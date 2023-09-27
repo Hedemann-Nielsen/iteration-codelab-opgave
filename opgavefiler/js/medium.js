@@ -81,35 +81,41 @@ let space = " ";
 
 fetch('https://dummyjson.com/users')
 .then(response => response.json())
-.then(data => {
+.then((data) => {
     console.log(data);
+    buildUserList(data.users);
 
-    data.users.forEach(user => {
-        let newUser = document.createElement("p");
-        newUser.innerHTML += `Fornavn: ${user.firstName} <br> Efternavn:  ${user.lastName} <br> Alder:  ${user.age}<br><br>`;
-        result4.appendChild(newUser);
-        //result4.innerText += user.firstName;
-        console.log(user.firstName);
-    });
-    console.log(data.users[0].firstName);
-
-    let result5 = document.getElementById("opgave4");
-let myUser = data.users[0];
-
-    for (const key in myUser) {
-        console.log(`${key}: ${myUser[key]}`);
-
-        let oneUser = document.createElement("p");
-        oneUser.innerHTML += `${key}: ${myUser[key]}`;
-        result5.appendChild(oneUser);
-
-      }
-
-
+    
 })
 
-;
+.catch((err)=> {
+console.log(err.message);
+});
 
+
+function buildUserList(users) {
+
+users.forEach((user) => {
+    let newUser = document.createElement("p");
+    newUser.innerHTML += `Fornavn: ${user.firstName} <br> Efternavn:  ${user.lastName} <br> Alder:  ${user.age}<br><br>`;
+    result4.appendChild(newUser);
+    //result4.innerText += user.firstName;
+    console.log(user.firstName);
+});
+console.log(data.users[0].firstName);
+
+let result5 = document.getElementById("opgave4");
+let myUser = data.users[0];
+
+for (const key in myUser) {
+    console.log(`${key}: ${myUser[key]}`);
+
+    let oneUser = document.createElement("p");
+    oneUser.innerHTML += `${key}: ${myUser[key]}`;
+    result5.appendChild(oneUser);
+
+  }
+}
 console.groupEnd();
 
 

@@ -4,9 +4,20 @@
 
 console.group("opgave 1");
 
+fetch('https://dummyjson.com/users')
+.then(response => response.json())
+.then(data => {
+    console.log(data);
 
-
-
+    data.users.forEach(user => {
+        let newUser = document.createElement("p");
+        newUser.innerHTML += `Fornavn: ${user.firstName} <br> Efternavn:  ${user.lastName} <br> Alder:  ${user.age}<br><br>`;
+        result4.appendChild(newUser);
+        //result4.innerText += user.firstName;
+        console.log(user.firstName);
+    });
+    console.log(data.users[0].firstName);
+}
 
 console.groupEnd();
 
